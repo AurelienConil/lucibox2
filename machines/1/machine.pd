@@ -1,0 +1,11 @@
+#N canvas 605 45 679 393 10;
+#X declare -path ../../patches;
+#X obj 5 87 cnv 15 680 230 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 7 263 UI/ui_tempo_small;
+#X obj 15 89 ui/ui_loop 1 1;
+#X obj 161 89 ui/ui_loop 2 1;
+#X obj 308 89 ui/ui_loop 3 1;
+#X obj 452 89 ui/ui_loop 4 1;
+#X obj 5 0 nogui;
+#X obj 8 320 declare -path ../../patches;
