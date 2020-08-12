@@ -20,7 +20,7 @@
 #X msg 400 277 2;
 #X obj 466 220 loadbang;
 #X obj 104 101 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
+-1 -1 0;
 #X obj 104 166 bang;
 #X msg 363 277 43;
 #X obj 101 101 cnv 15 38 15 empty \$0_opencnv open 6 8 0 10 -66577
@@ -212,7 +212,7 @@
 #X obj 234 228 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 234 251 sel 1;
-#X obj 129 231 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 129 231 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 79 267 spigot;
 #X obj 23 203 extra/sv song;
