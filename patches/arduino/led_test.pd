@@ -1,0 +1,45 @@
+#N canvas 1184 369 725 390 10;
+#X obj 213 421 s arduinoIN;
+#X obj 407 255 pack 3 3 1 6;
+#X obj 407 205 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 6;
+#X obj 407 233 t b f;
+#X obj 471 229 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 19 206 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X obj 19 234 t b f;
+#X obj 19 256 pack 1 1 1 5;
+#X msg 95 233 0;
+#X msg 129 231 5;
+#X obj 210 208 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 210 236 t b f;
+#X obj 210 258 pack 2 1 0 7;
+#X obj 607 202 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 1;
+#X obj 607 230 t b f;
+#X obj 607 251 pack 4 1 0 7;
+#X text 613 160 Song;
+#X text 411 164 Selection;
+#X text 215 166 3 dots leds;
+#X text 24 169 1 dot led;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 3 1 1 1;
+#X connect 4 0 1 3;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 7 0 0 0;
+#X connect 8 0 7 3;
+#X connect 9 0 7 3;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 12 0 0 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 1 15 1;
+#X connect 15 0 0 0;

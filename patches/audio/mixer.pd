@@ -7,7 +7,7 @@
 #X text 31 175 RAW;
 #X text 184 175 VOLUME;
 #X obj 184 50 *~ 1;
-#X obj 205 -331 extra/sv \$1_volume;
+#X obj 205 -105 extra/sv \$1_volume;
 #X obj 343 -45 extra/sv \$1_sendA;
 #X obj 500 -47 extra/sv \$1_sendB;
 #X obj 165 200 env~ 4096 4096;
@@ -26,7 +26,7 @@
 #X obj 343 -17 / 90;
 #X obj 500 -19 / 90;
 #X obj 206 7 * 1;
-#X obj 205 -237 / 127;
+#X obj 205 -80 / 127;
 #X floatatom 205 -55 10 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 0 0 7 0;

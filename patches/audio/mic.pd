@@ -20,7 +20,7 @@
 #X obj 245 -139 s mic_prevumetre;
 #X obj 121 -307 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 14 -329 r mic_prevumetre;
-#N canvas 579 250 641 372 init 0;
+#N canvas 579 250 641 372 init 1;
 #X obj 175 44 loadbang;
 #X msg 222 99 0;
 #X obj 269 107 extra/sv mic_threshold;
@@ -29,9 +29,9 @@
 #X floatatom 453 160 5 0 0 0 - - -;
 #X floatatom 363 160 5 0 0 0 - - -;
 #X obj 434 111 extra/svsave mic_gain;
-#X obj 141 166 extra/svsave mic_volume;
-#X obj 141 196 extra/svsave mic_sendA;
-#X obj 141 226 extra/svsave mic_sendB;
+#X obj 141 166 extra/svpreset mic_volume 127;
+#X obj 141 197 extra/svpreset mic_sendA 0;
+#X obj 141 227 extra/svpreset mic_sendB 0;
 #X connect 0 0 1 0;
 #X connect 0 0 3 0;
 #X connect 2 0 6 0;

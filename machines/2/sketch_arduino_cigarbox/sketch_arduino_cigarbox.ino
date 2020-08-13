@@ -26,8 +26,9 @@
 //--------------- NEOPIXEL ----------------
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_RGB +  NEO_KHZ800);
 int digitaloutValue[DIGITALOUT];
-int pixelsColor[NUMPIXELS][3];
-boolean pixelsOn[NUMPIXELS];
+int ledStrip1DotLooper[NUMPIXELS];
+int ledStrip3DotsLooper[NUMPIXELS];
+int ledStripSelection[NUMPIXELS];
 int digitaloutPin[] = {};
 
 // ------------   POTENTIOMETRE --------------
@@ -59,24 +60,17 @@ void setup(){
     digitalinValue[i] = digitalRead(digitalinPin[i]);
   }
 
-  //Array of pixels ON
-  for(int i=0; i<NUMPIXELS; i++){
-    pixelsOn[i] = false;
-  }
-
-  //SET defaulut color
-  for(int i=0; i<4; i++){
-    setColorNeoPixel(i*3, 2);
-    setColorNeoPixel(i*3 + 1, 3);
-    setColorNeoPixel(i*3 + 2, 7);
-  }
-  
   pixels.begin();
   for (int i= 0; i<DIGITALOUT; i++){
      setNeoPixel(i, 0,0,0);
   }
   pixels.show();
-  setColor(0);
+  // Init the memory of these virtual strip leds
+  for (int i= 0; i<NUMPIXELS; i++){
+     ledStrip1DotLooper[i] = 0 ;
+     ledStrip3DotsLooper[i] = 0;
+     ledStripSelection[i] = 0;
+  }
   pinMode(digitaloutPin[0], OUTPUT );
   pinMode(digitaloutPin[1], OUTPUT );
 
@@ -121,80 +115,64 @@ void loop(){
   }
   
   
-  // Serial receive message
-  while(Serial.available()>2){
-    
+    // Serial receive message
+  /*
+   *  Message to strip led
+   *  content of a message : mode index channel value end_of_line
+   *  mode : 1( one dot loop ) 2 ( 3 dots loop ) 3 ( selection ) 4 ( song )
+   *  index : index of looper
+   *  channel : only for 3 dots loop
+   *  value : color to print  O (off) 2 (red) 3(light white) 4( medium white) 5( blue) 6 ( yellow ) 7 ( green )
+   *  
+   *  in order to refresh without changing, send index = 0
+   */
+  while(Serial.available()>4){
+
+    int mode = (Serial.read()) ;
+    int index = (Serial.read()) - 1 ; // 1 is the first looper
     int channel = (Serial.read()) ;
     int value = (Serial.read()) ;
-    int finalvalue = value;
     char end_of_line = Serial.read();
-
-    //change Value because of led light power
-
+    
     if(end_of_line == 13 ){
       
-         switch(channel){
-             case 0:
-                   setOneNeoPixel( value, 0, 25, 25);
-              break;
+         switch(mode){
+             /* One dot looper. One color for each looper */
              case 1:
-                   //digitalWrite(digitaloutPin[1], finalvalue>0);
-                   //setNeoPixel(1, 0, 0, finalvalue);
-                break; 
-            case 2: 
-                   setColorNeoPixel(0,finalvalue);
-                break;
-           case 3:
-                   setColorNeoPixel(1, finalvalue);
+                   if(index>=0) set1DotLooper( index, value);
+                   update1DotLooper();
               break;
-             case 4:
-                   setColorNeoPixel(2,finalvalue);
+              /* 3 dot looper. 3 dots for each looper. Basically rec | recorded | play */
+             case 2:
+                   if(index>=0) set3DotsLooper( index, channel, value);
+                   update3DotsLooper();
                 break; 
-            case 5: 
-                   setColorNeoPixel(3, finalvalue);
+              /* Selection . dots white according  to the current selection */
+            case 3: 
+                   if(index>=0) setSelection( index, value );
+                   updateSelection();
                 break;
-             case 6:
-                   setColorNeoPixel(4,finalvalue);
+                /* Song . one dot according to the current song open */
+           case 4:
+                   if(index>=0) setSong( index, value );
               break;
-             case 7:
-                   setColorNeoPixel(5, finalvalue);
-                break; 
-            case 8: 
-                   setColorNeoPixel(6, finalvalue);
-                break;
-            case 9:
-                   setColorNeoPixel(7, finalvalue);
-              break;
-             case 10:
-                   setColorNeoPixel(8,finalvalue);
-                break; 
-            case 11: 
-                   setColorNeoPixel(9,finalvalue);
-                break;
-            case 12: 
-                   setColorNeoPixel(10,finalvalue);
-                break;
-            case 13: 
-                   setColorNeoPixel(11,finalvalue);
-                break;
-            case 14:
-                 break;
+                      
 
-
+             
              }
 
-    }
 
-  }
-
-  if(!Serial){
-      setWaveNeoPixel();
+     
+     
+     
     }
+   
+   
 
     
-  // Don't forget to update the LEDS when serial is over
-  pixels.show();
-  
+  }
+  // Pixels are not updated when changed
+  //pixels.show();
   
   delay(5);
   
@@ -234,26 +212,19 @@ void setNeoPixel(int channel, int r, int v, int b){
 
 void setColorNeoPixel(int channel,int colorIndex){
 
-  isWaiting = false;
   int finalr ;
   int finalg ;
   int finalb ;
   
   
   // if colorIndex is 1 or 0 : set On or Off
-  if(colorIndex<2 && channel<NUMPIXELS){
+  if(channel>=0  && channel<NUMPIXELS){
 
-       if(colorIndex==1) {
-        pixelsOn[channel] = true;
-       }else{
-        pixelsOn[channel] = false;
-       }
-
-  }
-  else{
-   //if colorIndex >=0, set color
-  
+   
     switch( colorIndex){
+        //OFF
+        case 0 :finalr = 0; finalg = 0; finalb = 0;
+        break;
         //RED
         case 2: finalr = 0; finalg = 25; finalb = 0;
           break;
@@ -274,114 +245,80 @@ void setColorNeoPixel(int channel,int colorIndex){
           break;
     }
 
-    pixelsColor[channel][0] = finalr;
-    pixelsColor[channel][1] = finalg;
-    pixelsColor[channel][2] = finalb;
-
-  }
-
-  //Finally draw pixel
-  int mult = 0;
-  if(pixelsOn[channel]) mult = 1;
-  
-  finalr = pixelsColor[channel][0] * mult;
-  finalg = pixelsColor[channel][1] * mult;
-  finalb = pixelsColor[channel][2] * mult;
-
-   pixels.setPixelColor(NUMPIXELS-(channel+1), pixels.Color(finalr,finalg,finalb));
+    // TODO ; choose if inverted or not
+    pixels.setPixelColor(NUMPIXELS-(channel+1), pixels.Color(finalr,finalg,finalb));
 
 
-  
-  
-}
-
-void setOneNeoPixel(int channel, int r, int v, int b ){
-
-isWaiting = false;
-
-for(int i=0; i<NUMPIXELS; i++){
-  setNeoPixel(i, 0, 0, 0);
-}
-
-// Effect of filling bar
-//for(int i=0; i<(channel+1); i++){
-//  setNeoPixel(i, r, v, b);
-//}
-
-// Effect one pixel
- setNeoPixel(channel, r, v, b);
-
-
-  
-}
-
-void setBarNeoPixel(int channel, int r, int v, int b ){
-
-isWaiting = false;
-
-for(int i=0; i<NUMPIXELS; i++){
-  setNeoPixel(i, 0, 0, 0);
-}
-
-// Effect of filling bar
-for(int i=0; i<(channel+1); i++){
-  setNeoPixel(i, r, v, b);
-}
-
-
-
-
-  
-}
-
-void setWaveNeoPixel(){
-
-  float freq = 0.4;
-  float modulation = ( sin(freq*(millis()/1000.0f)*2*PI))/2.0 + 0.5;
-  float finalR = globalR*modulation;
-  float finalG = globalG*modulation;
-  float finalB = globalB*modulation;
-  
-  for(int i=0; i<NUMPIXELS; i++){
-  setNeoPixel(i, finalR, finalG, finalB);
   }
 
   
 }
 
-void setColor(int module){
 
-isWaiting = true;
+void set1DotLooper( int index, int value){
 
-switch(module){
+  ledStrip1DotLooper[index] = value;
+  
+}
 
-  case 0:
-    globalR = 12;
-    globalG = 12;
-    globalB = 12;
-  break;
-  case 1:
-    globalR = 12; //BLeu
-    globalG = 0;
-    globalB = 0;
-  break;
-  case 2:
-    globalR = 0;
-    globalG = 12; //Red
-    globalB = 0;
-  break;
-  case 3:
-    globalR = 0;
-    globalG = 0;
-    globalB = 12;
-  break;
-  case 4:
-    globalR = 12;
-    globalG = 12;
-    globalB = 0;
-  break;
+void update1DotLooper(){
+ 
+ for (int i= 0; i<NUMPIXELS; i++){
+     setColorNeoPixel(i,ledStrip1DotLooper[i]);
+  }
+  pixels.show();
+  
+}
 
+void set3DotsLooper( int index,int channel, int value){
+
+  int finalIndex = index*3 + channel;
+  ledStrip3DotsLooper[finalIndex] = value;
+  
+  
+}
+
+void update3DotsLooper(){
+  for (int i= 0; i<NUMPIXELS; i++){
+     setColorNeoPixel(i,ledStrip3DotsLooper[i]);
+  }
+  pixels.show();
+}
+
+void setSelection( int index,int value ){
+
+  ledStripSelection[index] = value;
+}
+
+void updateSelection(){
+  for (int i= 0; i<NUMPIXELS; i++){
+     int finalColor = 0;
+     if(ledStripSelection[i]>0) finalColor = 3; //Medium white
+     setColorNeoPixel(i,finalColor);
+  }
+  pixels.show();
+}
+
+void setSong(int index, int value){
+//Song don't need to be updated. Don't need to save current state in a virtual led strip
+// -> draw it directly
+
+  int selectedColor = 0;
   
 
-}
+  switch(value){
+    case 0 : selectedColor = 0;
+    break;
+    case 1 : selectedColor = 7; // Gren means "loading"
+    break;
+    case 2 : selectedColor = 2; // Red means "recording"
+    break;
+  }
+  
+  for (int i= 0; i<NUMPIXELS; i++){
+     int finalColor = 0;
+     if(i==index) finalColor = 5; //Blue;
+     setColorNeoPixel(i,finalColor);
+  }
+  pixels.show();
 }

@@ -27,8 +27,8 @@
 #X msg -42 5 disconnect;
 #X obj -31 -26 sel 0 1;
 #X msg -11 -48 1;
-#X obj 78 -60 delay 200;
-#X obj 78 -83 loadbang;
+#X obj -11 -69 delay 200;
+#X obj -11 -92 loadbang;
 #X msg -34 27 connect 127.0.0.1 12345;
 #X obj -131 153 s toOSC;
 #X msg -156 106 /python/app/close 1;
@@ -39,7 +39,7 @@
 #X obj -161 213 sel 0;
 #X obj -162 246 delay 2000;
 #X msg -162 274 1;
-#X obj -32 -103 r \$0_osc_connect_python;
+#X obj -31 -123 r \$0_osc_connect_python;
 #X obj -162 294 s \$0_osc_connect_python;
 #X obj -175 -51 receive toPython;
 #X obj 307 226 externals/osc/routeOSC /python;
