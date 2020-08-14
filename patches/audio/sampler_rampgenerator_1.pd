@@ -1,4 +1,4 @@
-#N canvas 91 128 844 577 10;
+#N canvas 625 220 844 577 10;
 #X floatatom 227 -393 5 0 0 0 - - -;
 #X obj 227 -308 * 1;
 #X obj 227 -357 t b f;
@@ -41,11 +41,11 @@
 #X obj 396 -59 r \$1_\$2_timer;
 #X obj 227 -435 r \$1_\$2_loop_size;
 #X obj 634 -468 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X text 725 -357 why ???;
 #X obj 262 278 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 253 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 253 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 227 263 *~ 0;
 #X obj 227 299 *~ 0;
@@ -53,6 +53,8 @@
 #X msg 371 190 1;
 #X msg 432 254 1;
 #X msg 523 249 0;
+#X obj 560 -412 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+1 1;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
 #X connect 1 0 8 0;
@@ -83,6 +85,7 @@
 #X connect 26 0 24 1;
 #X connect 27 0 24 1;
 #X connect 28 0 14 0;
+#X connect 28 0 50 0;
 #X connect 29 0 30 0;
 #X connect 30 0 31 0;
 #X connect 31 0 32 1;

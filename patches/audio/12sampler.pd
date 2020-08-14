@@ -79,7 +79,7 @@
 #X connect 26 0 8 0;
 #X connect 27 0 9 0;
 #X restore 158 254 pd filesManagement;
-#N canvas 463 142 728 500 init 0;
+#N canvas 463 142 728 500 init 1;
 #X obj 149 4 loadbang;
 #X obj 635 104 s globalPitch;
 #X floatatom 635 79 5 0 0 0 - - -;
@@ -87,8 +87,8 @@
 #X msg 457 55 123;
 #X floatatom 494 174 5 0 0 0 - - -;
 #X obj 494 150 extra/sv \$1_samplerlooper_volume;
-#X obj 295 102 extra/svsave \$1_samplerlooper_sendB;
-#X obj 298 124 extra/svsave \$1_samplerlooper_sendA;
+#X obj 201 87 extra/svsave \$1_samplerlooper_sendB;
+#X obj 204 109 extra/svsave \$1_samplerlooper_sendA;
 #X msg 240 212 148;
 #X obj 104 288 extra/sv 1_\$1_loop_volume;
 #X obj 104 312 extra/sv 2_\$1_loop_volume;
@@ -109,6 +109,7 @@
 #X connect 0 0 23 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
+#X connect 4 0 6 1;
 #X connect 6 0 5 0;
 #X connect 9 0 22 0;
 #X connect 22 0 10 1;

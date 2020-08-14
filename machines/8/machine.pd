@@ -1,8 +1,8 @@
-#N canvas 581 141 772 536 10;
+#N canvas 468 114 1205 583 10;
 #X declare -path ../../patches;
 #X obj 7 370 cnv 15 750 142 empty empty empty 330 30 0 45 -21525 -88297
 0;
-#X obj 156 108 cnv 15 600 258 empty empty empty 20 12 0 14 -233017
+#X obj 158 108 cnv 15 1020 258 empty empty empty 20 12 0 14 -233017
 -66577 0;
 #X obj 77 373 ui/ui_tempo_small;
 #X obj 7 24 cnv 15 750 81 empty empty LUCIBOX 414 36 0 45 -21525 -88297
@@ -20,3 +20,4 @@
 #X obj 12 515 declare -path ../../patches;
 #X obj 9 107 nogui;
 #X obj 76 419 ui/ui_tempo_extra;
+#X obj 736 133 ui/ui_12sampler_mini 2;

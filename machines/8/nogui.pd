@@ -3,7 +3,7 @@
 #X declare -lib ceammc;
 #X obj 4 101 cnv 15 144 259 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#N canvas 462 173 1151 709 patch 1;
+#N canvas 112 150 1151 709 patch 1;
 #X obj 101 101 cnv 15 138 40 empty empty PATCH 20 12 0 14 -66577 -262144
 0;
 #X obj 328 55 adc~;
@@ -19,7 +19,7 @@
 #X msg 400 277 2;
 #X obj 466 220 loadbang;
 #X obj 104 101 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 1;
 #X obj 104 166 bang;
 #X msg 363 277 43;
 #X obj 101 101 cnv 15 38 15 empty \$0_opencnv open 6 8 0 10 -66577
@@ -227,7 +227,7 @@
 #X obj 102 70 extra/sv global_play;
 #X obj 210 257 extra/sv tempo_isplaying;
 #X obj 102 110 sel 0;
-#X obj 329 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 329 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 215 180 spigot;
 #X obj 328 110 == 0;
@@ -252,7 +252,7 @@
 ;
 #X obj 445 330 *~ 1;
 #X obj 40 228 declare -lib ceammc;
-#X obj 378 234 audio/8loop 0 0 2 1 1 0;
+#X obj 369 235 audio/8loop 0 0 2 1 1 0;
 #X obj 432 270 effect/reverb;
 #X obj 311 113 audio/mic;
 #X obj 41 331 audio/tempo;
@@ -322,6 +322,7 @@
 #X connect 30 0 14 0;
 #X connect 31 0 15 0;
 #X restore 695 581 pd play_rec_nanoKontrol;
+#X obj 605 227 audio/12sampler 2;
 #X connect 1 0 26 0;
 #X connect 1 1 26 0;
 #X connect 2 0 3 0;
@@ -341,11 +342,16 @@
 #X connect 25 0 2 0;
 #X connect 25 1 22 0;
 #X connect 26 1 7 0;
+#X connect 26 1 30 0;
 #X connect 26 2 25 0;
 #X connect 26 3 8 0;
+#X connect 30 0 2 0;
+#X connect 30 0 22 0;
+#X connect 30 1 25 0;
+#X connect 30 2 8 0;
 #X coords 0 -1 1 1 140 42 2 100 100;
 #X restore 6 138 pd patch;
-#N canvas 219 206 1141 592 connect 1;
+#N canvas 219 206 1141 592 connect 0;
 #X obj 40 6 cnv 15 996 83 empty empty CONNECT 330 30 0 45 -21525 -88297
 0;
 #X obj 44 26 cnv 15 138 40 empty empty CONNECT 20 12 0 14 -66577 -262144

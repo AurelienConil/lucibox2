@@ -1,0 +1,14 @@
+#N canvas 758 70 1007 415 12;
+#X obj 101 193 ui/ui_loop_sampler 1 \$1;
+#X obj 173 193 ui/ui_loop_sampler 2 \$1;
+#X obj 245 193 ui/ui_loop_sampler 3 \$1;
+#X obj 317 193 ui/ui_loop_sampler 4 \$1;
+#X obj 389 193 ui/ui_loop_sampler 5 \$1;
+#X obj 461 193 ui/ui_loop_sampler 6 \$1;
+#X obj 101 101 ui/ui_loop_sampler 7 \$1;
+#X obj 173 101 ui/ui_loop_sampler 8 \$1;
+#X obj 245 101 ui/ui_loop_sampler 9 \$1;
+#X obj 317 101 ui/ui_loop_sampler 10 \$1;
+#X obj 389 101 ui/ui_loop_sampler 11 \$1;
+#X obj 461 101 ui/ui_loop_sampler 12 \$1;
+#X coords 0 -1 1 1 432 190 1 100 100;

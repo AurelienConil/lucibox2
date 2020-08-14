@@ -1,4 +1,4 @@
-#N canvas 288 99 998 545 10;
+#N canvas 485 236 998 545 10;
 #X declare -path ../../patches;
 #X obj 7 370 cnv 15 980 142 empty empty empty 330 30 0 45 -21525 -88297
 0;
@@ -8,19 +8,8 @@
 #X obj 7 24 cnv 15 980 81 empty empty LUCIBOX 414 36 0 45 -21525 -88297
 0;
 #X obj 213 482 hsl 640 30 0 1 0 0 empty global_tempo_slider empty -2
--8 0 10 -33289 -4032 -1 33548 1;
-#X obj 190 246 ui/ui_loop_mini 1 1;
-#X obj 315 246 ui/ui_loop_mini 2 1;
-#X obj 441 246 ui/ui_loop_mini 3 1;
-#X obj 566 246 ui/ui_loop_mini 4 1;
-#X obj 691 246 ui/ui_loop_mini 5 1;
-#X obj 816 246 ui/ui_loop_mini 6 1;
-#X obj 190 148 ui/ui_loop_mini 7 1;
-#X obj 315 149 ui/ui_loop_mini 8 1;
-#X obj 441 148 ui/ui_loop_mini 9 1;
-#X obj 566 148 ui/ui_loop_mini 10 1;
-#X obj 691 148 ui/ui_loop_mini 11 1;
-#X obj 816 148 ui/ui_loop_mini 12 1;
+-8 0 10 -33289 -4032 -1 0 1;
 #X obj 15 486 declare -path ../../patches;
 #X obj 5 107 nogui;
 #X obj 189 425 UI/ui_tempo_extra;
+#X obj 186 131 ui/ui_12sampler 1;
