@@ -3,7 +3,7 @@
 #X declare -lib ceammc;
 #X obj 4 101 cnv 15 144 259 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#N canvas 462 173 1151 709 patch 1;
+#N canvas 254 110 1151 709 patch 1;
 #X obj 101 101 cnv 15 138 40 empty empty PATCH 20 12 0 14 -66577 -262144
 0;
 #X obj 328 55 adc~;
@@ -19,7 +19,7 @@
 #X msg 400 277 2;
 #X obj 466 220 loadbang;
 #X obj 104 101 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 1;
 #X obj 104 166 bang;
 #X msg 363 277 43;
 #X obj 101 101 cnv 15 38 15 empty \$0_opencnv open 6 8 0 10 -66577
@@ -121,7 +121,7 @@
 #X connect 32 0 15 0;
 #X connect 33 0 16 0;
 #X connect 34 0 17 0;
-#X restore 692 543 pd play_led_nanoKontrol;
+#X restore 744 227 pd play_led_nanoKontrol;
 #N canvas 408 299 864 508 select_led_nanoKontrol 0;
 #X obj 117 237 extra/sv module_selected;
 #X obj 117 354 & 2;
@@ -219,7 +219,7 @@
 #X connect 38 0 26 0;
 #X connect 39 0 27 0;
 #X connect 40 0 28 0;
-#X restore 692 563 pd select_led_nanoKontrol;
+#X restore 744 247 pd select_led_nanoKontrol;
 #N canvas 381 150 537 404 global_with_no_selection 0;
 #X obj 327 87 extra/sv module_selected;
 #X obj 102 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -227,7 +227,7 @@
 #X obj 102 70 extra/sv global_play;
 #X obj 210 257 extra/sv tempo_isplaying;
 #X obj 102 110 sel 0;
-#X obj 329 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 329 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 215 180 spigot;
 #X obj 328 110 == 0;
@@ -244,11 +244,11 @@
 #X connect 7 0 5 0;
 #X connect 10 0 8 0;
 #X connect 10 1 9 0;
-#X restore 691 520 pd global_with_no_selection;
-#X obj 675 471 extra/sv song_mode;
-#X msg 707 447 1;
-#X obj 707 426 loadbang;
-#X text 768 424 allow song to be changed whenever load button is clicked
+#X restore 743 204 pd global_with_no_selection;
+#X obj 727 155 extra/sv song_mode;
+#X msg 759 131 1;
+#X obj 759 110 loadbang;
+#X text 820 108 allow song to be changed whenever load button is clicked
 ;
 #X obj 445 330 *~ 1;
 #X obj 40 228 declare -lib ceammc;
@@ -256,7 +256,6 @@
 #X obj 432 270 effect/reverb;
 #X obj 311 113 audio/mic;
 #X obj 41 331 audio/tempo;
-#X obj 297 489 arduino/led_loop_selection;
 #N canvas 786 198 692 514 play_rec_nanoKontrol 0;
 #X floatatom 349 344 5 0 0 0 - - -;
 #X floatatom 386 344 5 0 0 0 - - -;
@@ -321,7 +320,15 @@
 #X connect 29 0 13 0;
 #X connect 30 0 14 0;
 #X connect 31 0 15 0;
-#X restore 695 581 pd play_rec_nanoKontrol;
+#X restore 747 265 pd play_rec_nanoKontrol;
+#X obj 179 455 arduino/led_loop_mono 1 1;
+#X obj 263 455 arduino/led_loop_mono 2 1;
+#X obj 346 455 arduino/led_loop_mono 3 1;
+#X obj 429 455 arduino/led_loop_mono 4 1;
+#X obj 513 455 arduino/led_loop_mono 5 1;
+#X obj 597 455 arduino/led_loop_mono 6 1;
+#X obj 681 455 arduino/led_loop_mono 7 1;
+#X obj 764 455 arduino/led_loop_mono 8 1;
 #X connect 1 0 26 0;
 #X connect 1 1 26 0;
 #X connect 2 0 3 0;
@@ -345,7 +352,7 @@
 #X connect 26 3 8 0;
 #X coords 0 -1 1 1 140 42 2 100 100;
 #X restore 6 138 pd patch;
-#N canvas 219 206 1141 592 connect 1;
+#N canvas 219 206 1141 592 connect 0;
 #X obj 40 6 cnv 15 996 83 empty empty CONNECT 330 30 0 45 -21525 -88297
 0;
 #X obj 44 26 cnv 15 138 40 empty empty CONNECT 20 12 0 14 -66577 -262144
