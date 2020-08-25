@@ -1,0 +1,44 @@
+#N canvas 381 133 865 650 10;
+#X obj 201 201 cnv 15 198 30 empty empty led_tempo 20 12 0 14 -233017
+-66577 0;
+#X obj 208 419 t b f;
+#X obj 208 475 s arduinoIN;
+#X obj 383 81 r tempo_click_bang;
+#X obj 203 60 r tempo_quantif_bang;
+#X obj 305 238 bng 15 250 50 0 empty empty tempo_click 17 7 0 10 -262144
+-1 -1;
+#X obj 204 239 bng 15 250 50 0 empty empty tempo_quantize 17 7 0 10
+-262144 -1 -1;
+#X obj 204 263 t b b;
+#X obj 204 288 delay 200;
+#X msg 204 313 0;
+#X msg 238 313 1;
+#X obj 208 452 pack 5 3 1 0;
+#X obj 308 418 t b f;
+#X obj 308 474 s arduinoIN;
+#X obj 304 262 t b b;
+#X obj 304 287 delay 200;
+#X msg 304 312 0;
+#X msg 338 312 1;
+#X obj 308 451 pack 5 2 1 0;
+#X connect 1 0 11 0;
+#X connect 1 1 11 3;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 14 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 1 10 0;
+#X connect 8 0 9 0;
+#X connect 9 0 1 0;
+#X connect 10 0 1 0;
+#X connect 11 0 2 0;
+#X connect 12 0 18 0;
+#X connect 12 1 18 3;
+#X connect 14 0 15 0;
+#X connect 14 1 17 0;
+#X connect 15 0 16 0;
+#X connect 16 0 12 0;
+#X connect 17 0 12 0;
+#X connect 18 0 13 0;
+#X coords 0 -1 1 1 200 60 2 200 200;

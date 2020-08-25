@@ -1,0 +1,22 @@
+#N canvas 214 137 712 583 10;
+#X obj 101 101 cnv 15 145 30 empty empty Tempo 5 12 0 14 -233017 -66577
+0;
+#X obj 101 180 cnv 15 145 30 empty empty STOP 5 12 0 14 -33289 -262144
+0;
+#X obj 101 220 cnv 15 145 30 empty empty PLAY 5 12 0 14 -33289 -262144
+0;
+#X obj 161 186 extra/midiLearn tempo_stop;
+#X obj 269 282 sel 0;
+#X obj 163 293 sel 0;
+#X obj 165 225 extra/midiLearn tempo_play;
+#X obj 190 338 s tempoGoIn;
+#X obj 295 330 s tempoStopIn;
+#X obj 190 315 bang;
+#X obj 296 306 bang;
+#X connect 3 0 4 0;
+#X connect 4 1 10 0;
+#X connect 5 1 9 0;
+#X connect 6 0 5 0;
+#X connect 9 0 7 0;
+#X connect 10 0 8 0;
+#X coords 0 -1 1 1 147 160 2 100 100;

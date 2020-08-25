@@ -1,4 +1,4 @@
-#N canvas 34 129 775 424 10;
+#N canvas 1073 115 775 424 10;
 #X obj 5 -364 cnv 15 123 20 empty empty MICROPHONE 3 9 0 20 -170675
 -66577 0;
 #X obj 15 -306 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
@@ -29,9 +29,9 @@
 #X floatatom 453 160 5 0 0 0 - - -;
 #X floatatom 363 160 5 0 0 0 - - -;
 #X obj 434 111 extra/svsave mic_gain;
-#X obj 141 166 extra/svpreset mic_volume 127;
-#X obj 141 197 extra/svpreset mic_sendA 0;
-#X obj 141 227 extra/svpreset mic_sendB 0;
+#X obj 144 165 extra/svsave mic_volume 127;
+#X obj 141 197 extra/svsave mic_sendA 0;
+#X obj 141 227 extra/svsave mic_sendB 0;
 #X connect 0 0 1 0;
 #X connect 0 0 3 0;
 #X connect 2 0 6 0;

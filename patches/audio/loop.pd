@@ -1,4 +1,4 @@
-#N canvas 223 30 1453 634 10;
+#N canvas 1920 40 1440 634 10;
 #X declare -path ../;
 #X declare -lib ceammc;
 #X obj -186 37 cnv 15 1200 70 empty empty FROM::INLET 20 12 0 14 -204217
@@ -123,7 +123,7 @@
 #X obj 400 37 bang;
 #X obj 393 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -4034
 -1 -1;
-#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 276 108 extra/sv \$1_\$2_is_loop_recorded;
 #X obj 273 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -258113
@@ -250,7 +250,7 @@
 #X obj 64 18 r tempo_click_bang;
 #X obj 200 18 inlet;
 #X obj 64 100 spigot;
-#X obj 118 63 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 118 63 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 64 308 outlet;
 #X obj 334 81 extra/sv \$1_\$2_is_loop_waitforplay;
@@ -448,7 +448,7 @@
 -66577 0;
 #N canvas 74 50 761 687 ledoutrec 0;
 #X msg 102 285 1;
-#X obj 102 447 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 102 447 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 102 474 sel 1;
 #X msg 102 377 bang;
@@ -614,7 +614,7 @@
 #X obj 1146 775 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 1249 778 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 678 640 r \$0_arrayindexplay;
 #X obj 525 761 r \$0_arrayindexrec;
 #X msg 395 684 start;
@@ -837,7 +837,7 @@
 #X connect 11 1 3 0;
 #X connect 11 2 10 0;
 #X restore -182 152 pd init;
-#N canvas 441 169 776 489 save 0;
+#N canvas 2472 136 776 489 save 0;
 #X obj -565 234 soundfiler;
 #X obj 126 17 t b b;
 #X obj 126 -17 inlet;
@@ -913,7 +913,7 @@
 #X restore -61 189 pd save;
 #X obj -61 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 286 95 814 609 open 0;
+#N canvas 1961 83 814 609 open 1;
 #X obj 144 249 soundfiler;
 #X obj 176 328 / 44.1;
 #X floatatom 176 358 10 0 0 0 - - -;
@@ -931,7 +931,7 @@ exist ? \, volume \, reversed ? );
 #X obj 26 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 144 276 sel 0;
-#N canvas 1020 259 630 509 checkinfofile 0;
+#N canvas 810 259 630 509 checkinfofile 0;
 #X obj 157 -16 inlet;
 #X obj 259 137 extra/sv song;
 #X obj 196 220 textfile;
@@ -1088,7 +1088,7 @@ exist ? \, volume \, reversed ? );
 #X obj 164 98 i \$0;
 #X obj 260 167 symbol;
 #X obj 260 141 r samples_location-\$0;
-#N canvas 443 556 1280 624 config 0;
+#N canvas 443 383 1280 624 config 0;
 #X obj 194 31 inlet;
 #X msg 416 165 1;
 #X obj 355 188 extra/sv \$1_\$2_is_loop_recorded;
@@ -1125,8 +1125,8 @@ exist ? \, volume \, reversed ? );
 #X restore 507 353 pd config;
 #X obj 541 16 r \$1_\$2_loop_open_browser;
 #X obj 507 226 t f b;
-#N canvas 180 199 600 415 stretch_file 0;
-#X msg 84 375 @pitch \$1;
+#N canvas 2363 102 688 543 stretch_file 1;
+#X msg 90 408 @pitch \$1;
 #X msg 322 335 2;
 #X obj 67 238 log;
 #X obj 66 78 f 0;
@@ -1143,23 +1143,25 @@ exist ? \, volume \, reversed ? );
 #X obj 305 67 r \$1_\$2_realstart_first;
 #X obj 317 47 r \$1_\$2_realstart_first_with_tempo;
 #X msg 326 101 0;
-#X obj 194 389 i \$0;
-#X msg 194 410 @src \$1_loopOrigin;
+#X obj 164 389 i \$0;
+#X msg 164 410 @src \$1_loopOrigin;
 #X obj 149 328 print timeStretch;
 #X obj 67 149 spigot 0;
 #X msg 268 32 1;
-#X obj 67 351 t b f b b b;
-#X obj 333 391 i \$0;
-#X msg 333 412 @dest \$1_loop0;
+#X obj 303 391 i \$0;
+#X msg 303 412 @dest \$1_loop0;
 #X obj 68 459 array.stretch;
 #X obj 68 -27 r \$0_loop_tempo_stretch;
 #X obj 66 6 t f b b;
-#X floatatom 125 6 5 0 0 0 - - -;
+#X floatatom 119 4 5 0 0 0 - - -;
 #X obj 139 156 extra/sv \$1_\$2_is_loop_recorded;
 #X obj 66 189 spigot 0;
 #X msg 567 110;
-#X connect 0 0 24 0;
-#X connect 1 0 21 0;
+#X obj 67 351 t b b f b b b;
+#X obj 416 412 extra/sv tempo;
+#X obj 415 465 s \$0_loop_tempo;
+#X connect 0 0 23 0;
+#X connect 1 0 30 0;
 #X connect 2 0 9 0;
 #X connect 3 0 5 0;
 #X connect 4 0 6 0;
@@ -1168,7 +1170,7 @@ exist ? \, volume \, reversed ? );
 #X connect 6 0 5 0;
 #X connect 6 1 5 1;
 #X connect 7 0 18 0;
-#X connect 7 0 21 0;
+#X connect 7 0 30 0;
 #X connect 9 0 8 0;
 #X connect 9 0 11 0;
 #X connect 11 0 7 0;
@@ -1177,28 +1179,30 @@ exist ? \, volume \, reversed ? );
 #X connect 14 0 15 0;
 #X connect 15 0 12 0;
 #X connect 16 0 17 0;
-#X connect 17 0 24 0;
-#X connect 19 0 29 0;
+#X connect 17 0 23 0;
+#X connect 19 0 28 0;
 #X connect 20 0 12 0;
-#X connect 21 0 24 0;
-#X connect 21 1 0 0;
-#X connect 21 3 16 0;
-#X connect 21 4 22 0;
+#X connect 21 0 22 0;
 #X connect 22 0 23 0;
-#X connect 23 0 24 0;
-#X connect 25 0 26 0;
-#X connect 25 0 27 0;
-#X connect 26 0 3 0;
-#X connect 26 1 4 2;
-#X connect 26 2 20 0;
-#X connect 28 0 29 1;
-#X connect 29 0 2 0;
+#X connect 24 0 25 0;
+#X connect 24 0 26 0;
+#X connect 25 0 3 0;
+#X connect 25 1 4 2;
+#X connect 25 2 20 0;
+#X connect 27 0 28 1;
+#X connect 28 0 2 0;
+#X connect 30 0 23 0;
+#X connect 30 2 0 0;
+#X connect 30 3 16 0;
+#X connect 30 4 21 0;
+#X connect 30 5 31 2;
+#X connect 31 1 32 0;
 #X restore 366 506 pd stretch_file;
 #X text 273 529 stretch file only for sound from song or external files.
 Update stretch when tempo is changed;
 #X msg 144 227 read \$5/\$4/loop\$2_\$3.wav \$1_loopOrigin;
 #X obj 26 1 r loadfilessong;
-#X msg 480 143 read -resize \$1 \$2_loopOrigin;
+#X msg 480 143 read \$1 \$2_loopOrigin;
 #X connect 0 0 14 0;
 #X connect 1 0 2 0;
 #X connect 2 0 26 0;

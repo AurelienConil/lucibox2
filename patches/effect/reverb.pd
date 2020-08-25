@@ -1,11 +1,11 @@
-#N canvas 94 428 714 416 10;
+#N canvas 871 400 714 416 10;
 #X obj 52 328 outlet~;
 #X obj 549 99 hsl 90 15 2.4 0 0 1 empty empty reflection 20 8 0 10
 -262144 -260097 -1 300 0;
 #X obj 315 -1 inlet;
 #X obj 159 6 inlet~;
-#X obj 542 182 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 1;
+#X obj 542 182 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 8600 1;
 #X obj 276 22 extra/sv reverb_room;
 #X msg 494 182 set \$1;
 #X obj 538 28 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144

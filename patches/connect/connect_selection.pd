@@ -1,0 +1,54 @@
+#N canvas 214 137 712 583 10;
+#X obj 101 101 cnv 15 145 30 empty empty selection 5 12 0 14 -233017
+-66577 0;
+#X obj 101 180 cnv 15 145 30 empty empty ++ 5 12 0 14 -33289 -262144
+0;
+#X obj 101 220 cnv 15 145 30 empty empty -- 5 12 0 14 -33289 -262144
+0;
+#X obj 356 279 extra/sv module_last_selected;
+#X obj 365 155 extra/sv module_selected;
+#X obj 221 492 s ask_single_selection;
+#X obj 221 350 f 0;
+#X obj 166 185 extra/midiLearn selection_plus;
+#X obj 167 225 extra/midiLearn selection_minus;
+#X obj 194 290 sel 0;
+#X obj 120 291 sel 0;
+#X obj 147 350 f 0;
+#X floatatom 221 463 5 0 0 0 - - -;
+#X obj 146 429 % 8;
+#X floatatom 146 480 5 0 0 0 - - -;
+#X floatatom 147 373 5 0 0 0 - - -;
+#X floatatom 221 371 5 0 0 0 - - -;
+#X obj 148 512 s ask_single_selection;
+#X obj 147 316 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 221 314 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 309 302 5 0 0 0 - - -;
+#X obj 309 324 log 2;
+#X obj 221 410 % 8;
+#X obj 220 432 + 1;
+#X obj 147 399 + 6;
+#X obj 147 455 + 1;
+#X connect 3 0 20 0;
+#X connect 6 0 16 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 0;
+#X connect 9 1 19 0;
+#X connect 10 1 18 0;
+#X connect 11 0 15 0;
+#X connect 12 0 5 0;
+#X connect 13 0 25 0;
+#X connect 14 0 17 0;
+#X connect 15 0 24 0;
+#X connect 16 0 22 0;
+#X connect 18 0 11 0;
+#X connect 19 0 6 0;
+#X connect 20 0 21 0;
+#X connect 21 0 6 1;
+#X connect 21 0 11 1;
+#X connect 22 0 23 0;
+#X connect 23 0 12 0;
+#X connect 24 0 13 0;
+#X connect 25 0 14 0;
+#X coords 0 -1 1 1 147 160 2 100 100;
