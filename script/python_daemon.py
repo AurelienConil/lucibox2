@@ -107,7 +107,7 @@ def start_app():
     
     if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
         print("========= START PUREDATA======")
-        cmd = ["pd",  "-nogui",  "-jack",  "/home/patch/lucibox/machines/"+str(machine)+"/nogui.pd"]
+        cmd = ["pd",  "-nogui",  "-jack",  "/media/patch/LUCIBOX/machines/"+str(machine)+"/nogui.pd"]
         subprocess.Popen(cmd)
         print("======== PUREDATA STARTED ====")
         print("========= START OPEN STAGE CONTROL ======")
@@ -144,7 +144,7 @@ def main():
 
         #START ON BOOT
         global machine
-        machine = 6
+        machine = 7
         start_app() 
 
         # MAIN LOOP 
