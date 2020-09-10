@@ -1,3 +1,0 @@
-duration 0;
-tempo 0;
-exist 0;

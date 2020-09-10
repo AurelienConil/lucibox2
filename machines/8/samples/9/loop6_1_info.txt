@@ -1,3 +1,0 @@
-duration 20;
-tempo 500;
-exist 1;

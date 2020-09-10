@@ -11,5 +11,9 @@ Thumbs.db
 # Audio Files #
 ###############
 *.wav
+**/samples/**/*.txt
+machines/8/samples/**/*.txt
 
 .fseventsd/fseventsd-uuid
+
+

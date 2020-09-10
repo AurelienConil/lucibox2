@@ -1,3 +1,0 @@
-duration 8;
-tempo 41705;
-exist 1;
