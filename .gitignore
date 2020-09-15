@@ -15,5 +15,5 @@ Thumbs.db
 machines/8/samples/**/*.txt
 
 .fseventsd/fseventsd-uuid
-
+myapp/
 
