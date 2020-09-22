@@ -60,7 +60,7 @@
 #X obj 368 -95 loadbang;
 #X obj 106 100 hradio 23 1 0 2 empty empty empty 0 -8 0 10 -262144
 -1 -1 1;
-#X obj 100 100 cnv 15 59 24 empty \$0_playcnv PLAY 20 12 0 15 -1 -24198
+#X obj 100 100 cnv 15 59 24 empty \$0_playcnv PLAY 20 12 0 15 -1 -66577
 0;
 #X obj 105 214 bang;
 #X obj 101 260 outlet;
@@ -138,7 +138,7 @@
 -1 -1;
 #X obj 85 457 pack 22 2 2 \$0;
 #X msg 98 397 77;
-#X obj 101 101 cnv 15 68 20 empty \$0_bgcnv S_7 20 12 0 12 -262144
+#X obj 101 101 cnv 15 68 20 empty \$0_bgcnv S_1 20 12 0 12 -262144
 -66577 0;
 #X obj 57 312 extra/sv module_selected;
 #X obj 57 338 == \$1;
@@ -156,6 +156,13 @@
 #X obj 191 -47 extra/sv \$1_\$2_loop_playsampler;
 #X obj 188 -12 sel 1 0;
 #X msg -127 392 \; \$3_bgcnv label S_\$1;
+#N canvas 2825 486 254 233 \$0-full 1;
+#X obj 34 35 UI/ui_loop \$1 \$2;
+#X restore 151 249 pd \$0-full;
+#X obj 150 192 i \$0;
+#X obj 150 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 150 213 \; pd-\$1-full vis 1;
 #X connect 0 0 23 0;
 #X connect 1 0 23 1;
 #X connect 3 0 2 0;
@@ -209,4 +216,6 @@
 #X connect 55 0 56 0;
 #X connect 56 0 0 0;
 #X connect 56 1 1 0;
+#X connect 59 0 61 0;
+#X connect 60 0 59 0;
 #X coords 0 -1 1 1 70 90 2 100 100;
