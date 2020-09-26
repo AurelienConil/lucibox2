@@ -1,4 +1,4 @@
-#N canvas 0 40 1440 634 10;
+#N canvas 9 52 1440 634 10;
 #X declare -path ../;
 #X declare -lib ceammc;
 #X obj -186 37 cnv 15 1200 70 empty empty FROM::INLET 20 12 0 14 -204217
@@ -46,8 +46,8 @@
 #X obj 821 155 cnv 15 430 260 empty empty Control_panel 20 12 0 14
 -237308 -66577 0;
 #N canvas 545 163 595 445 (subpatch) 0;
-#X array \$0_loop1 1.2e+06 float 0;
-#X coords 0 -1 1.2e+06 1 200 30 1 0 0;
+#X array \$0_loop1 2e+06 float 0;
+#X coords 0 -1 2e+06 1 200 30 1 0 0;
 #X restore 1039 365 graph;
 #X obj 1049 240 hsl 170 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
@@ -123,7 +123,7 @@
 #X obj 400 37 bang;
 #X obj 393 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -4034
 -1 -1;
-#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 276 108 extra/sv \$1_\$2_is_loop_recorded;
 #X obj 273 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -258113
@@ -187,6 +187,7 @@
 #X obj 397 413 s tempoGoIn;
 #X text 861 436 afer quantif;
 #X msg 952 482 1;
+#X obj 887 346 extra/sv \$1_\$2_loop_forceplaystop;
 #X connect 0 0 2 0;
 #X connect 2 0 5 2;
 #X connect 3 0 19 2;
@@ -235,6 +236,7 @@
 #X connect 52 1 53 0;
 #X connect 53 0 54 0;
 #X connect 57 0 29 1;
+#X connect 58 0 14 0;
 #X restore 520 383 pd managePlaying;
 #N canvas 1190 190 662 391 manage 0;
 #X obj 64 187 f;
@@ -439,8 +441,8 @@
 #X obj 1380 718 extra/sv \$1_\$2_is_loop_recording;
 #X obj 68 81 s~ \$0-input;
 #N canvas 545 163 595 445 (subpatch) 0;
-#X array \$0_loop0 1.2e+06 float 0;
-#X coords 0 -1 1.2e+06 1 200 30 1 0 0;
+#X array \$0_loop0 2e+06 float 0;
+#X coords 0 -1 2e+06 1 200 30 1 0 0;
 #X restore 1038 321 graph;
 #X obj 454 795 tabwrite~ \$0_loop0;
 #X obj 223 670 tabwrite~ \$0_loop0;
@@ -506,7 +508,7 @@
 #X obj 1082 773 outlet;
 #X obj 1176 773 outlet;
 #N canvas 316 155 881 687 ledoutplay 0;
-#X obj 251 433 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 251 433 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 251 460 sel 1;
 #X msg 227 363 bang;
@@ -811,7 +813,6 @@
 #X obj 232 47 loadbang;
 #X obj 54 141 pack \$0;
 #X obj 192 183 i 0;
-#X msg 192 159 1.2e+06;
 #X obj 192 231 array size \$0_loop1;
 #X obj 192 207 array size \$0_loop0;
 #X msg 69 169 \; \$1_loop0 const 0;
@@ -823,19 +824,20 @@
 #X obj 228 97 t b b b;
 #X obj 192 251 array size \$0_loopOrigin;
 #X msg 52 237 \; \$1_loopOrigin const 0;
-#X connect 0 0 11 0;
-#X connect 1 0 7 0;
+#X msg 192 159 2e+06;
+#X connect 0 0 10 0;
 #X connect 1 0 6 0;
-#X connect 1 0 13 0;
+#X connect 1 0 5 0;
+#X connect 1 0 12 0;
+#X connect 2 0 3 0;
 #X connect 2 0 4 0;
-#X connect 2 0 5 0;
-#X connect 2 0 12 0;
-#X connect 3 0 2 0;
-#X connect 8 0 1 0;
-#X connect 10 0 9 0;
-#X connect 11 0 1 0;
-#X connect 11 1 3 0;
-#X connect 11 2 10 0;
+#X connect 2 0 11 0;
+#X connect 7 0 1 0;
+#X connect 9 0 8 0;
+#X connect 10 0 1 0;
+#X connect 10 1 13 0;
+#X connect 10 2 9 0;
+#X connect 13 0 2 0;
 #X restore -182 152 pd init;
 #N canvas 2472 136 776 489 save 0;
 #X obj -565 234 soundfiler;
@@ -913,10 +915,10 @@
 #X restore -61 189 pd save;
 #X obj -61 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 626 83 1136 726 open 1;
+#N canvas 32 70 1136 726 open 0;
 #X obj 144 249 soundfiler;
-#X obj 176 328 / 44.1;
-#X floatatom 176 358 10 0 0 0 - - -;
+#X obj 176 346 / 44.1;
+#X floatatom 176 376 10 0 0 0 - - -;
 #X obj 134 2 inlet;
 #X obj 480 82 openpanel;
 #X obj 480 114 pack s \$0;
@@ -930,7 +932,7 @@
 exist ? \, volume \, reversed ? );
 #X obj 26 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 144 276 sel 0;
+#X obj 144 294 sel 0;
 #N canvas 810 259 630 509 checkinfofile 0;
 #X obj 157 -16 inlet;
 #X obj 259 137 extra/sv song;
@@ -996,7 +998,7 @@ exist ? \, volume \, reversed ? );
 #X connect 28 0 8 0;
 #X connect 28 1 9 1;
 #X restore 141 42 pd checkinfofile;
-#X obj 176 302 f 0;
+#X obj 176 320 f 0;
 #X obj 480 165 soundfiler;
 #X obj 507 263 / 44.1;
 #X floatatom 507 287 10 0 0 0 - - -;
@@ -1083,7 +1085,7 @@ exist ? \, volume \, reversed ? );
 #X connect 10 4 9 0;
 #X connect 10 5 1 0;
 #X connect 11 0 15 1;
-#X restore 176 399 pd config;
+#X restore 176 417 pd config;
 #X obj 144 75 t b b b b;
 #X obj 164 98 i \$0;
 #X obj 260 167 symbol;
@@ -1138,7 +1140,7 @@ exist ? \, volume \, reversed ? );
 #X obj 92 262 / 0.693147;
 #X text 165 261 ln 2 . Base log;
 #X obj 92 282 * -12;
-#X obj 291 131 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 291 131 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 305 67 r \$1_\$2_realstart_first;
 #X obj 317 47 r \$1_\$2_realstart_first_with_tempo;
@@ -1223,7 +1225,8 @@ Update stretch when tempo is changed;
 #X obj 26 1 r loadfilessong;
 #X msg 480 143 read \$1 \$2_loopOrigin;
 #X msg 144 227 read \$5/\$4/loop\$2_\$3.wav \$1_loopOrigin;
-#X connect 0 0 14 0;
+#X floatatom 144 269 20 0 0 0 - - -;
+#X connect 0 0 39 0;
 #X connect 1 0 2 0;
 #X connect 2 0 26 0;
 #X connect 3 0 15 0;
@@ -1254,6 +1257,7 @@ Update stretch when tempo is changed;
 #X connect 36 0 13 0;
 #X connect 37 0 17 0;
 #X connect 38 0 0 0;
+#X connect 39 0 14 0;
 #X restore -7 190 pd open;
 #X obj -7 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -1427,8 +1431,8 @@ Update stretch when tempo is changed;
 #X obj 728 566 s \$1_\$2_loop_startbang;
 #X obj -184 193 declare -lib ceammc;
 #N canvas 545 163 595 445 (subpatch) 0;
-#X array \$0_loopOrigin 1.2e+06 float 0;
-#X coords 0 -1 1.2e+06 1 200 30 1 0 0;
+#X array \$0_loopOrigin 2e+06 float 0;
+#X coords 0 -1 2e+06 1 200 30 1 0 0;
 #X restore 1040 410 graph;
 #X text 14 296 3 Timestretch;
 #X obj -66 670 tabwrite~ \$0_loop0;

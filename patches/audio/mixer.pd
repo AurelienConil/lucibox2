@@ -28,6 +28,7 @@
 #X obj 206 7 * 1;
 #X obj 205 -80 / 127;
 #X floatatom 205 -55 10 0 0 0 - - -;
+#X floatatom 240 -136 10 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 0 0 7 0;
 #X connect 0 0 22 0;
@@ -56,3 +57,4 @@
 #X connect 26 0 21 0;
 #X connect 27 0 28 0;
 #X connect 28 0 26 0;
+#X connect 29 0 8 1;
