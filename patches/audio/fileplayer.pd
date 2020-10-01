@@ -17,11 +17,18 @@
 #X obj 294 366 outlet~;
 #X msg 353 291 1;
 #X msg 59 285 0;
-#N canvas 0 23 450 300 init 0;
+#N canvas 626 226 527 341 init 1;
 #X obj 86 31 extra/svsave \$1_volume;
 #X obj 91 74 extra/svsave \$1_sendA;
 #X obj 94 119 extra/svsave \$1_sendB;
 #X text 86 165 sapreset instead of svsave ??;
+#X obj 82 261 extra/sv \$1_\$2_fileplayer_playstop;
+#X obj 86 221 extra/sv \$1_\$3_fileplayer_end;
+#X obj 347 157 loadbang;
+#X msg 348 187 0;
+#X connect 6 0 7 0;
+#X connect 7 0 4 1;
+#X connect 7 0 5 1;
 #X restore 21 -72 pd init;
 #X obj 639 93 openpanel;
 #X obj 639 67 bang;
@@ -34,7 +41,7 @@
 #X obj 228 333 audio/mixer \$1_\$2_fileplayer;
 #X obj 13 328 extra/sv \$1_\$3_fileplayer_end;
 #X obj 639 19 r \$1_\$2_fileplayer_openbrowser;
-#X obj 135 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 135 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 306 209 symbol;
 #X msg 306 234 open \$1;
