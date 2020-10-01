@@ -1,4 +1,4 @@
-#N canvas 559 292 1135 608 12;
+#N canvas 226 184 1135 608 12;
 #X msg 87 210 1;
 #X msg 54 176 0;
 #X text 135 152 1 starts playback;
@@ -22,7 +22,7 @@
 #X obj 91 74 extra/svsave \$1_sendA;
 #X obj 94 119 extra/svsave \$1_sendB;
 #X text 86 165 sapreset instead of svsave ??;
-#X restore 123 66 pd init;
+#X restore 21 -72 pd init;
 #X obj 639 93 openpanel;
 #X obj 639 67 bang;
 #X obj 677 217 savepanel;
@@ -34,7 +34,7 @@
 #X obj 228 333 audio/mixer \$1_\$2_fileplayer;
 #X obj 13 328 extra/sv \$1_\$3_fileplayer_end;
 #X obj 639 19 r \$1_\$2_fileplayer_openbrowser;
-#X obj 135 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 135 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 306 209 symbol;
 #X msg 306 234 open \$1;
@@ -44,6 +44,31 @@
 #X floatatom 683 402 5 0 0 0 - - -;
 #X floatatom 769 348 5 0 0 0 - - -;
 #X msg 345 118 symbol \$5/\$4/file\$2_\$3.wav;
+#X obj 86 6 r fileplayer_stop;
+#X obj 86 32 bang;
+#X obj 147 35 extra/sv \$1_\$3_fileplayer_end;
+#X obj 147 59 sel 1;
+#X msg 164 84 0, f 2;
+#X obj 136 -60 r fileplayer_play;
+#N canvas 719 218 450 300 playFromOutside 0;
+#X obj 157 -39 inlet;
+#X obj 157 -7 == \$1;
+#X obj 157 24 sel 1;
+#X obj 1 110 extra/sv \$1_\$2_fileplayer_playstop;
+#X obj 236 150 == 0;
+#X obj 236 177 sel 1;
+#X msg 236 205 1;
+#X msg 189 56 0;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 2;
+#X connect 2 1 7 0;
+#X connect 3 1 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 1;
+#X connect 7 0 3 1;
+#X restore 137 -29 pd playFromOutside;
 #X connect 0 0 23 0;
 #X connect 1 0 23 0;
 #X connect 4 1 6 3;
@@ -79,3 +104,9 @@
 #X connect 33 0 34 0;
 #X connect 35 0 33 1;
 #X connect 36 0 29 1;
+#X connect 37 0 38 0;
+#X connect 38 0 1 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 41 0 24 1;
+#X connect 42 0 43 0;
