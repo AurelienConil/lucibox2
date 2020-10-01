@@ -12,7 +12,7 @@
 //NEOPIXEL
 #define PIN            12
 
-#define NUMPIXELS      12
+#define NUMPIXELS      8
 #define MAXLUMINOSITY  0.1
 
 
@@ -57,8 +57,8 @@ void setup(){
   }
 
   pixels.begin();
-  for (int i= 0; i<DIGITALOUT; i++){
-     setNeoPixel(i, 0,0,0);
+  for (int i= 0; i<NUMPIXELS; i++){
+     setNeoPixel(i, 0,0,200);
   }
   pixels.show();
   // Init the memory of these virtual strip leds
@@ -167,8 +167,17 @@ void loop(){
 
     
   }
-  // Don't forget to update the LEDS when serial is over
-  pixels.show();
+  // Pixels are not updated when changed
+  //pixels.show();
+
+  // How to know if computer is connected
+  /* the only to know is to wait for the 1st messages received
+   * boolean isConnected = false;
+   * Dès que le premier serial.available() existe, c'est variable est passée à false.
+   * Pas moyen de savoir si la connection est coupé
+   * if(Serial) sert juste juste à savoir si phyiquement la prise usb est reliée à l'ordinateur.
+   */
+  
   
   delay(5);
   

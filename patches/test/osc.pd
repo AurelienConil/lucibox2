@@ -1,0 +1,10 @@
+#N canvas 51 136 450 300 12;
+#X declare -path ../;
+#X obj 126 68 declare -path ../;
+#X obj 83 114 hardware/osc_router;
+#X obj 139 185 r fromOSC;
+#X obj 139 216 print OSC:;
+#X obj 320 222 s toOSC;
+#X msg 319 191 /machin chose;
+#X connect 2 0 3 0;
+#X connect 5 0 4 0;
