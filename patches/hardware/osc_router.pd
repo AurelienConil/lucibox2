@@ -17,7 +17,7 @@
 #X obj 211 132 bng 15 250 50 0 empty empty receive 17 7 0 10 -262144
 -1 -1;
 #X obj 484 252 s fromOSC;
-#X msg 270 26 connect 127.0.0.1 9998;
+#X msg 306 141 port 9999;
 #X msg 396 -18 1;
 #X obj 382 -55 delay 200;
 #X obj 382 -84 loadbang;
