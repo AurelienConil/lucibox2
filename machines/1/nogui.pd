@@ -229,7 +229,7 @@ stop;
 #X connect 32 1 19 0;
 #X coords 0 -1 1 1 140 42 2 100 100;
 #X restore 317 118 pd patch;
-#N canvas 34 109 1110 592 connect 0;
+#N canvas 34 109 1110 592 connect 1;
 #X obj 625 97 connect/connect_global_recplay;
 #X obj 40 6 cnv 15 996 83 empty empty CONNECT 330 30 0 45 -21525 -88297
 0;
