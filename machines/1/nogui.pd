@@ -2,7 +2,7 @@
 #X declare -path ../../patches;
 #X obj 101 101 cnv 15 680 81 empty empty LUCIBOX 20 36 0 45 -21525
 -88297 0;
-#N canvas 317 78 1324 764 patch 1;
+#N canvas -416 190 1324 764 patch 0;
 #X obj 101 101 cnv 15 138 40 empty empty PATCH 20 12 0 14 -66577 -262144
 0;
 #X obj 250 -2 audio/mic;
@@ -19,7 +19,7 @@
 #X msg 400 277 2;
 #X obj 466 220 loadbang;
 #X obj 104 101 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 1;
 #X obj 104 166 bang;
 #X msg 363 277 43;
 #X obj 101 101 cnv 15 38 15 empty \$0_opencnv open 6 8 0 10 -66577
@@ -229,7 +229,7 @@ stop;
 #X connect 32 1 19 0;
 #X coords 0 -1 1 1 140 42 2 100 100;
 #X restore 317 118 pd patch;
-#N canvas 598 213 1110 592 connect 0;
+#N canvas 34 109 1110 592 connect 0;
 #X obj 625 97 connect/connect_global_recplay;
 #X obj 40 6 cnv 15 996 83 empty empty CONNECT 330 30 0 45 -21525 -88297
 0;
@@ -238,7 +238,7 @@ stop;
 0;
 #N canvas 402 288 1038 552 open 0;
 #X obj 103 102 hradio 15 0 0 3 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 1;
 #X text 462 314 label-color;
 #X text 477 339 label-color;
 #X obj 377 311 t b f;
@@ -281,6 +281,7 @@ stop;
 #X obj 475 98 connect/connect_loop 4 1;
 #X obj 410 63 bng 15 250 50 0 connect_clear_all empty CLEAR_ALL 17
 7 0 10 -258113 -1 -228856;
+#X obj 799 361 hardware/osc_router;
 #X connect 8 0 2 0;
 #X coords 0 -1 1 1 140 42 1 43 25;
 #X restore 460 118 pd connect;
