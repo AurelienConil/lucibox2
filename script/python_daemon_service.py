@@ -120,11 +120,11 @@ def start_app():
 
 def write_disk():
     print("========= WRITING ENABLE")
-    subprocess.Popen(["rw"])
+    subprocess.call("rw")
 
 def read_disk():
     print("========= READ ONLY ENABLE")
-    subprocess.Popen(["ro"])
+    subprocess.call("ro")
 
 def main():
         
