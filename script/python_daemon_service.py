@@ -119,12 +119,14 @@ def start_app():
         print("========= OPEN STAGE CONTROL STARTED ======")
 
 def write_disk():
-    print("========= WRITING ENABLE")
-    subprocess.call("rw")
+    print("========= WRITING ENABLE ======")
+    os.chdir("/home/patch/lucibox/script/")
+    subprocess.call(['./write_only.sh'])
 
 def read_disk():
-    print("========= READ ONLY ENABLE")
-    subprocess.call("ro")
+    print("========= READONLY ======")
+    os.chdir("/home/patch/lucibox/script/")
+    subprocess.call(['./read_only.sh'])
 
 def main():
         
