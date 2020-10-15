@@ -130,8 +130,8 @@ def main():
         
         # OSC SERVER      
         myip = socket.gethostbyname(socket.gethostname())
-        myip = "127.0.0.1"
-        print("IP adress is : "+myip)
+        myip = "0.0.0.0"
+        print("osc server IP adress is : "+myip)
         try:
             server = SimpleServer((myip, 12354)) 
         except:
