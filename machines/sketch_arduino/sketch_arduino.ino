@@ -213,7 +213,6 @@ void setNeoPixel(int channel, int r, int v, int b){
   pixels.setPixelColor(channel, pixels.Color(finalv,finalr,finalb));
   
 
-
 }
 
 void setColorNeoPixel(int channel,int colorIndex){
