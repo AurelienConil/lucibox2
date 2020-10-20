@@ -1,4 +1,4 @@
-#N canvas 9 52 1440 634 10;
+#N canvas 199 74 1440 634 10;
 #X declare -path ../;
 #X declare -lib ceammc;
 #X obj -186 37 cnv 15 1200 70 empty empty FROM::INLET 20 12 0 14 -204217
@@ -123,7 +123,7 @@
 #X obj 400 37 bang;
 #X obj 393 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -4034
 -1 -1;
-#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 323 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 276 108 extra/sv \$1_\$2_is_loop_recorded;
 #X obj 273 160 bng 40 1000 500 0 empty empty empty 17 7 0 10 -258113
@@ -450,7 +450,7 @@
 -66577 0;
 #N canvas 74 50 761 687 ledoutrec 0;
 #X msg 102 285 1;
-#X obj 102 447 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 102 447 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 102 474 sel 1;
 #X msg 102 377 bang;
@@ -508,7 +508,7 @@
 #X obj 1082 773 outlet;
 #X obj 1176 773 outlet;
 #N canvas 316 155 881 687 ledoutplay 0;
-#X obj 251 433 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 251 433 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 251 460 sel 1;
 #X msg 227 363 bang;
@@ -617,7 +617,7 @@
 0 1;
 #X obj 1249 778 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
-#X obj 678 640 r \$0_arrayindexplay;
+#X obj 678 638 r \$0_arrayindexplay;
 #X obj 525 761 r \$0_arrayindexrec;
 #X msg 395 684 start;
 #X obj 542 608 t b b b;
@@ -1436,7 +1436,7 @@ Update stretch when tempo is changed;
 #X restore 1040 410 graph;
 #X text 14 296 3 Timestretch;
 #X obj -66 670 tabwrite~ \$0_loop0;
-#X obj 884 644 sampler_rampgenerator_\$6 \$1 \$2;
+#X obj 882 654 sampler_rampgenerator_\$6 \$1 \$2;
 #X obj 1519 255 extra/svpreset \$1_\$2_loop_sendA 0;
 #X obj 1519 276 extra/svpreset \$1_\$2_loop_sendB 0;
 #X obj 1518 299 extra/svpreset \$1_\$2_loop_volume 127;
@@ -1517,6 +1517,7 @@ Update stretch when tempo is changed;
 #X connect 98 0 102 0;
 #X connect 98 0 192 1;
 #X connect 103 0 119 0;
+#X connect 103 0 187 0;
 #X connect 104 0 92 0;
 #X connect 105 0 14 0;
 #X connect 105 0 92 0;
@@ -1568,4 +1569,4 @@ Update stretch when tempo is changed;
 #X connect 175 0 116 0;
 #X connect 176 0 118 0;
 #X connect 181 0 114 0;
-#X connect 187 0 119 0;
+#X connect 187 0 173 0;
