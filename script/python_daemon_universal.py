@@ -17,15 +17,15 @@ from OSC import OSCClient, OSCMessage, OSCServer
 ################################################
 #  MESSAGE from open stage control go directly to python :
 # /app /rpi manage app itself and raspberry pi
-# others message are forward to puredata
-# Pure Data messages go directly to openstagectrol.
+# others message are forward to puredata, nodejs, openframeworks ..
 ################################################
 
 ################################################
 #           PORTS
-# Node js in = 12344
-# Python in =  12354
+# Node js in = 9998
+# Python in =  12345
 # Puredata in = 9999
+# Openframeworks in = 9997
 ################################################
 
 
@@ -38,14 +38,19 @@ class SimpleServer(OSCServer):
     
     def handleMsg(self,oscAddress, tags, data, client_address):
         global machine
-        global client
+        global client_lucibox
+        global client_nodejs
+        global client_of
+        
         print("OSC message received on : "+oscAddress)
 
         splitAddress = oscAddress.split("/")
-        print(splitAddress)
+        #DEBUG
+        #print(splitAddress)
         
-        ############## APP itself #############
+        ############## SERVICE itself #############
         if(splitAddress[1]=="app"):
+            # TODO : restart dedicated services here
             if(splitAddress[2]=="close"):
                 print("closing the app")
                 quit_app()
@@ -61,26 +66,46 @@ class SimpleServer(OSCServer):
         elif(splitAddress[1]=="rpi"):
             if(splitAddress[2]=="shutdown"):
                 print("Turning off the rpi")
-                forwardPowerOff()
+                powerOff()
             if(splitAddress[2]=="read"):
                 read_disk()
             if(splitAddress[2]=="write"):
                 write_disk()
-        ############# OTHERS MESSAGES  ####
-        ############ FORWARD TO OPENSTAGECONTROL ###
+        ############# LUCIBOX  ####
+        elif(splitAddress[1]=="lucibox"):
+            separator="/"
+            splitAddress.remove("lucibox")
+            finalAddress = separator.join(splitAddress)
+            oscmsg = OSCMessage()
+            oscmsg.setAddress(finalAddress)
+            oscmsg.append(data)
+            client_lucibox.send(oscmsg)
+            ############# OPENFRAMEWORKS  ####
+        elif(splitAddress[1]=="of"):
+            separator="/"
+            splitAddress.remove("of")
+            finalAddress = separator.join(splitAddress)
+            oscmsg = OSCMessage()
+            oscmsg.setAddress(finalAddress)
+            oscmsg.append(data)
+            client_of.send(oscmsg)  
+        ############ FORWARD TO NODEJS ###
         else :
-            oscmsg = OSC.OSCMessage()
+            oscmsg = OSCMessage()
             oscmsg.setAddress(oscAddress)
             oscmsg.append(data)
-            client.send(oscmsg)
+            client_nodejs.send(oscmsg)
 
 
-def forwardPowerOff():
+def powerOff():
 
-    time.sleep(5)
-    print("========= POWER OFF ======")
-    os.chdir("/home/patch/lucibox/script/")
-    subprocess.call(['./shutdown.sh'])
+    print("========= POWER OFF IN 5 SECONDS ======")
+    if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+        time.sleep(5)
+        # TODO change it to "sudo poweroff" in terminal directly
+        
+        os.chdir("/home/patch/lucibox/script/")
+        subprocess.call(['./shutdown.sh'])
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -94,17 +119,24 @@ def get_ip():
         s.close()
     return IP
         
+# This close daemon server
 def closing_app():
     global runningApp
     runningApp = False
     print("Closing App")
 
+# There is no APP, only lucibox app, web app, of app
+# DEPRECATED, DO NOT USE IT
 def quit_app():
+    # Change it to sudo systemctl stop lucibox.service
     print("========= QUIT PUREDATA ======")
+
     os.chdir("/home/patch/lucibox/script/")
     subprocess.call(["./quit_pd.sh"])
     print("======== PUREDATA QUITTED ====")
 
+# There is no APP, only lucibox app, web app, of app
+# DEPRECATED, DO NOT USE IT
 def start_app():
     global machine
     
@@ -131,11 +163,12 @@ def read_disk():
 def main():
         
         # OSC SERVER      
-        myip = socket.gethostbyname(socket.gethostname())
+        # This is a trick to get IP, but 0.0.0.0 allows localhost and external connection
+        #myip = get_ip()
         myip = "0.0.0.0"
         print("osc server IP adress is : "+myip)
         try:
-            server = SimpleServer((myip, 12354)) 
+            server = SimpleServer((myip, 12345)) 
         except:
             print(" ERROR : creating server") 
         print("server created") 
@@ -150,14 +183,20 @@ def main():
 
         print(" OSC server is running") 
 
-        # OSC CLIENT
-        global client
-        client = OSCClient()
-        client.connect( ('127.0.0.1', 9998))
+        # OSC LUCIBBOX CLIENT
+        global client_lucibox
+        client_lucibox = OSCClient()
+        client_lucibox.connect( ('127.0.0.1', 9999))
 
-        #START ON BOOT
-        global machine
-        machine = 7
+        # OSC NODEJS CLIENT
+        global client_nodejs
+        client_nodejs = OSCClient()
+        client_nodejs.connect( ('127.0.0.1', 9998))
+
+        # OSC OF CLIENT
+        global client_of
+        client_of = OSCClient()
+        client_of.connect( ('127.0.0.1', 9997))
 
         # MAIN LOOP 
         global runningApp
